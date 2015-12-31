@@ -28,6 +28,7 @@ defmodule AdventOfCode.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
+      {:poison, ">= 0.0.1"},
       {:mix_test_watch, ">= 0.0.1"}
     ]
   end
