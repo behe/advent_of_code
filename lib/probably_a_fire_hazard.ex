@@ -121,9 +121,6 @@ defmodule ProbablyAFireHazard do
   ## Example
       iex> "turn on 0,0 through 0,0" |> parse |> play_brightness |> count
       1
-
-      iex> "toggle 0,0 through 999,999" |> parse |> play_brightness |> count
-      2_000_000
   """
   def play_brightness(instructions) do
     instructions
@@ -147,17 +144,6 @@ defmodule ProbablyAFireHazard do
     end)
   end
 
-  @doc """
-  ## Example
-      iex> "turn on 0,0 through 999,999" |> parse |> play |> count
-      1_000_000
-
-      iex> "turn on 0,0 through 999,999\\ntoggle 0,0 through 999,0" |> parse |> play |> count
-      999_000
-
-      iex> "turn on 0,0 through 999,999\\nturn off 499,499 through 500,500" |> parse |> play |> count
-      999_996
-  """
   def count(lights) do
     Map.values(lights)
     |> Enum.map(&Map.values/1)
