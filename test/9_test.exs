@@ -12,6 +12,6 @@ defmodule AllInASingleNightTest do
   test "assignment 2" do
     assert File.read!("test/fixtures/9.txt")
     |> parse |> longest
-     == {{"Straylight", "Snowdin", "Arbre", "AlphaCentauri", "Tristram", "Norrath", "Faerun", "Tambi"}, 804}
+     == {{"Tambi", "Faerun", "Norrath", "Tristram", "AlphaCentauri", "Arbre", "Snowdin", "Straylight"}, 804}
   end
 end

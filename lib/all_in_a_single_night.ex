@@ -86,13 +86,8 @@ defmodule AllInASingleNight do
   def shortest(struct) do
     routes([], struct.locations)
     |> Enum.map(&route_with_length(&1, struct))
-    |> Enum.reduce(fn({_, dist} = curr, {_, min_dist} = min) ->
-      if dist < min_dist do
-        curr
-      else
-        min
-      end
-    end)
+    |> Enum.sort_by(&elem(&1, 1))
+    |> List.first
   end
 
   defp route_with_length(route, struct) do
@@ -108,18 +103,13 @@ defmodule AllInASingleNight do
   @doc """
   ## Example
       iex> "London to Dublin = 464\\nLondon to Belfast = 518\\nDublin to Belfast = 141\\n" |> parse |> longest
-      {{"Belfast", "London", "Dublin"}, 982}
+      {{"Dublin", "London", "Belfast"}, 982}
   """
   def longest(struct) do
     routes([], struct.locations)
     |> Enum.map(&route_with_length(&1, struct))
-    |> Enum.reduce(fn({_, dist} = curr, {_, min_dist} = min) ->
-      if dist > min_dist do
-        curr
-      else
-        min
-      end
-    end)
+    |> Enum.sort_by(&elem(&1, 1))
+    |> List.last
   end
 
   defp routes(route, []) do
@@ -133,14 +123,3 @@ defmodule AllInASingleNight do
     |> List.flatten
   end
 end
-
-# London -> London
-# London, Belfast
-# Belfast, London
-#
-# London, Belfast, Dublin
-# London, Dublin, Belfast
-# Belfast, London, Dublin
-# Belfast, Dublin, London
-# Dublin, London, Belfast
-# Dublin, Belfast, London
